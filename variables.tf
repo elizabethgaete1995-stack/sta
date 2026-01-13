@@ -416,24 +416,28 @@ variable "analytics_diagnostic_monitor_sta_rsg" {
 }
 
 //NAMING VARIABLES
-
 variable "entity" {
-  description = "(Required) Santander entity code. Used for Naming. (3 characters) "
+  description = "(Required) Name client. Used for Naming. (6 characters) "
   type        = string
 }
 
 variable "environment" {
-  description = "(Required) Santander environment code. Used for Naming. (2 characters) "
+  description = "(Required)  Environment code. Used for Naming (dev, pre, pro). (3 characters) "
   type        = string
 }
 
 variable "app_name" {
-  description = "(Required) App acronym of the resource. Used for Naming. (6 characters) "
+  description = "(Required) App name of the resource. Used for Naming. ( 3 characters) "
+  type        = string
+}
+
+variable "function_acronym" {
+  description = "(Required) App function of the resource. Used for Naming. (3 characters) "
   type        = string
 }
 
 variable "sequence_number" {
-  description = "(Required) Secuence number of the resource. Used for Naming. (3 characters) "
+  description = "(Required) Sequence number of the resource. Used for Naming. (3 characters) "
   type        = string
 }
 
