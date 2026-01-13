@@ -187,7 +187,7 @@ resource "azurerm_storage_account" "storage_account_service" {
     default_action             = var.waiver_sp54_STA_NoNetworksACLDefault_value
     virtual_network_subnet_ids = var.virtual_network_subnet_ids
     bypass                     = var.bypass
-    ip_rules                   = distinct(compact(concat(var.ip_rules, module.whitelist.ip_whitelist)))
+    #ip_rules                   = distinct(compact(concat(var.ip_rules, module.whitelist.ip_whitelist)))
 
     dynamic "private_link_access" {
       for_each = toset(var.endpoint_resource_ids)
