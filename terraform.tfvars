@@ -14,8 +14,12 @@ app_acronym    = "poc"
 sequence_number = "001"
 
 // TAGGING
+custom_tags = {
+
+
 app_name ="sta"
 cost_center ="CC-Test" 
 tracking_cod ="POC"
 # Custom tags
 custom_tags = { "1" = "1", "2" = "2" }
+}
