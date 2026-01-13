@@ -1,35 +1,8 @@
-module "azure_regions" {
-  source  = "tfe1.sgtech.corp/curated-catalog/module-reg/azurerm"
-  version = ">=1.0.0"
-}
-
-module "whitelist" {
-  source  = "tfe1.sgtech.corp/curated-catalog/module-irw/azurerm"
-  version = ">=1.0.0"
-}
-
-module "tags" {
-  source         = "tfe1.sgtech.corp/curated-catalog/module-tag/azurerm"
-  version        = ">=1.0.0"
-  rsg_name       = var.rsg_name
-  inherit        = var.inherit
-  product        = var.product
-  cost_center    = var.cost_center
-  shared_costs   = var.shared_costs
-  apm_functional = var.apm_functional
-  cia            = var.cia
-  custom_tags    = var.custom_tags
-  optional_tags  = var.optional_tags
-}
 
 # Define variables for local scope
 locals {
-
-  regions = module.azure_regions.regions
-
-  geo_region = lookup(local.regions, var.location)
-  sta_name   = join("", [var.entity, var.environment, local.geo_region, "sta", var.app_acronym, var.function_acronym, var.sequence_number])
-
+  #geo_region = lookup(local.regions, var.location)
+  sta_name    = join("", [var.app_name, var.location, var.entity,var.environment, var.sequence_number])
   diagnostic_monitor_enabled = substr(var.rsg_name, 3, 1) == "p" || var.analytics_diagnostic_monitor_enabled ? true : false
   mds_lwk_enabled            = var.analytics_diagnostic_monitor_lwk_id != null || (var.lwk_name != null && local.rsg_lwk != null)
   mds_sta_enabled            = var.analytics_diagnostic_monitor_sta_id != null || (var.analytics_diagnostic_monitor_sta_name != null && var.analytics_diagnostic_monitor_sta_rsg != null)
