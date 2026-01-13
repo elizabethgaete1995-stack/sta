@@ -1,6 +1,5 @@
 // DATA
 rsg_name       = "rg-poc-test-001"
-
 location       = "chilecentral"
 
 analytics_diagnostic_monitor_enabled = false
@@ -12,6 +11,7 @@ entity         = "sta"
 environment    = "dev"
 app_acronym    = "poc"
 sequence_number = "001"
+
 
 // TAGGING
 custom_tags = {
