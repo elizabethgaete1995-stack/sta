@@ -117,7 +117,7 @@ resource "azurerm_key_vault_key" "generated" {
     }  
   }
 
-  tags = var.inherit ? (length(module.tags.tags) < 16 ? module.tags.tags : module.tags.mandatory_tags) : (length(module.tags.tags_complete) < 16 ? module.tags.tags_complete : module.tags.mandatory_tags)
+  #tags = var.inherit ? (length(module.tags.tags) < 16 ? module.tags.tags : module.tags.mandatory_tags) : (length(module.tags.tags_complete) < 16 ? module.tags.tags_complete : module.tags.mandatory_tags)
 }
 
 # Create and configure a azurerm storage account
