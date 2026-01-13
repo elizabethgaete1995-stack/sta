@@ -1,0 +1,53 @@
+name: Build Artifacts
+on: 
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Dispatch repo
+      run: |
+        REPO="${{ github.event.repository.name }}"
+        if [[ "$REPO" == *"-azurerm-module"* ]]; then CLOUD="azure"
+        elif [[ "$REPO" == *"-aws-module"* ]]; then CLOUD="aws"
+        else
+            exit 1
+        fi
+        TOKEN="${{ secrets.TOKEN_GITHUB }}"
+        response=$(curl -i -X POST \
+        -H "Accept: application/vnd.github.v3+json" \
+        -H "Authorization: token $TOKEN" \
+        https://api.github.com/repos/santander-group-slz/cloud.curated.modules-workflows/actions/workflows/terraform_terratest.yml/dispatches \
+        -d '{"ref":"master","inputs":{"modulo":"'"$REPO"'","cloud":"'"$CLOUD"'","testing":"terratest"}}')
+        sleep 10
+    - name: Wait for the workflow to complete
+      run: |
+          TOKEN="${{ secrets.TOKEN_GITHUB }}"
+          runs_response=$(curl -s -H "Accept: application/vnd.github.v3+json" \
+          -H "Authorization: token $TOKEN" \
+          https://api.github.com/repos/santander-group-slz/cloud.curated.modules-workflows/actions/runs?event=workflow_dispatch&branch=master)
+          run_id=$(echo $runs_response | jq -r '.workflow_runs[0].id' )
+          echo "RUN ID = $run_id"
+          while true; do
+            status=$(curl -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token $TOKEN" \
+            https://api.github.com/repos/santander-group-slz/cloud.curated.modules-workflows/actions/runs/$run_id)
+            status=$(echo $status | jq -r '.status')
+            echo "Current status: $status"
+            if [ "$status" == "completed" ]; then
+              conclusion=$(curl -H "Accept: application/vnd.github.v3+json" \
+              -H "Authorization: token $TOKEN" \
+              https://api.github.com/repos/santander-group-slz/cloud.curated.modules-workflows/actions/runs/$run_id | jq -r '.conclusion')
+              echo "Workflow completed with conclusion: $conclusion"
+              if [ "$conclusion" == "success" ]; then
+                exit 0
+              else
+                exit 1
+              fi
+            fi
+            sleep 30
+          done
+          
