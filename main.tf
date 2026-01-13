@@ -198,7 +198,7 @@ resource "azurerm_storage_account" "storage_account_service" {
     }
   }
 
-  tags = var.inherit ? module.tags.tags : module.tags.tags_complete
+  #tags = var.inherit ? module.tags.tags : module.tags.tags_complete
 
   lifecycle {
     ignore_changes = [
