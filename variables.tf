@@ -431,11 +431,6 @@ variable "app_name" {
   type        = string
 }
 
-variable "function_acronym" {
-  description = "(Required) App function of the resource. Used for Naming. (3 characters) "
-  type        = string
-}
-
 variable "sequence_number" {
   description = "(Required) Sequence number of the resource. Used for Naming. (3 characters) "
   type        = string
