@@ -139,7 +139,7 @@ resource "azurerm_storage_account" "storage_account_service" {
   allow_nested_items_to_be_public = false
   public_network_access_enabled    = var.public_network_access_enabled
   cross_tenant_replication_enabled = var.cross_tenant_replication_enabled
-  custom_ tags = var.custom_ tags
+  #custom_ tags = var.custom_ tags
 
   identity {
     type = "SystemAssigned"
