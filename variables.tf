@@ -9,11 +9,9 @@ variable "rsg_name" {
   type        = string
   description = "(Required) The name of the resource group in which the resource is created. Changing this forces a new resource to be created."
 }
-
 variable "location" {
-  description = "(Optional) Specifies the supported Azure location where the resource exists. Changing this forces a new product to be created. If not set assume the Resource Group's location."
+  description = "Región Azure"
   type        = string
-  default     = null
 }
 
 // PRODUCT
