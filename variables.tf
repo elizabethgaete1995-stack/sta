@@ -427,13 +427,8 @@ variable "environment" {
   type        = string
 }
 
-variable "app_acronym" {
+variable "app_name" {
   description = "(Required) App acronym of the resource. Used for Naming. (6 characters) "
-  type        = string
-}
-
-variable "function_acronym" {
-  description = "(Required) App function of the resource. Used for Naming. (4 characters) "
   type        = string
 }
 
