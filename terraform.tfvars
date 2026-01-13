@@ -1,21 +1,21 @@
 // DATA
 rsg_name       = "rg-poc-test-001"
 
-location       = "chl"
+location       = "chilecentral"
 
 analytics_diagnostic_monitor_enabled = false
-analytics_diagnostic_monitor_name    = "akv-poc-dev-chl-001-adm"
+analytics_diagnostic_monitor_name    = "sta-poc-dev-chl-001-adm"
 
 
 // NAMING VARIABLES
-entity         = "akv"
+entity         = "sta"
 environment    = "dev"
 app_acronym    = "poc"
 sequence_number = "001"
 
 // TAGGING
 custom_tags = {
- app_name ="akv"
+ app_name ="sta"
  cost_center ="CC-Test" 
  tracking_cod ="POC"
  # Custom tags
