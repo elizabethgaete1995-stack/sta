@@ -4,7 +4,8 @@ location       = "chilecentral"
 
 analytics_diagnostic_monitor_enabled = false
 analytics_diagnostic_monitor_name    = "sta-poc-dev-chl-001-adm"
-
+subscription_id = "ef0a94be-5750-4ef8-944b-1bbc0cdda800"
+account_tier = "Standard"
 
 // NAMING VARIABLES
 entity         = "sta"
