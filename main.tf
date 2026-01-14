@@ -412,6 +412,7 @@ resource "azurerm_advanced_threat_protection" "threat_protection" {
 }
 
 # Create and configure a azurerm monitor diagnostic setting
+/*
 resource "azurerm_monitor_diagnostic_setting" "sta" {
   count = local.diagnostic_monitor_enabled ? 1 : 0
 
@@ -440,15 +441,15 @@ resource "azurerm_monitor_diagnostic_setting" "sta" {
     ignore_changes = [log_analytics_destination_type]
   }
 }
-
+*/
 resource "azurerm_monitor_diagnostic_setting" "blob" {
   count = local.diagnostic_monitor_enabled && local.is_blob_type ? 1 : 0
 
   name                           = var.analytics_diagnostic_monitor_name
-  target_resource_id             = "${azurerm_storage_account.storage_account_service[0].id}/blobServices/default"
+  #target_resource_id             = "${azurerm_storage_account.storage_account_service[0].id}/blobServices/default"
   log_analytics_workspace_id     = local.mds_lwk_enabled ? (var.analytics_diagnostic_monitor_lwk_id != null ? var.analytics_diagnostic_monitor_lwk_id : data.azurerm_log_analytics_workspace.lwk_principal[0].id) : null
-  eventhub_name                  = local.mds_aeh_enabled ? var.analytics_diagnostic_monitor_aeh_name : null
-  eventhub_authorization_rule_id = local.mds_aeh_enabled ? (var.eventhub_authorization_rule_id != null ? var.eventhub_authorization_rule_id : data.azurerm_eventhub_namespace_authorization_rule.mds_aeh[0].id) : null
+  #eventhub_name                  = local.mds_aeh_enabled ? var.analytics_diagnostic_monitor_aeh_name : null
+  #eventhub_authorization_rule_id = local.mds_aeh_enabled ? (var.eventhub_authorization_rule_id != null ? var.eventhub_authorization_rule_id : data.azurerm_eventhub_namespace_authorization_rule.mds_aeh[0].id) : null
   storage_account_id             = local.mds_sta_enabled ? (var.analytics_diagnostic_monitor_sta_id != null ? var.analytics_diagnostic_monitor_sta_id : data.azurerm_storage_account.mds_sta[0].id) : null
 
   dynamic "enabled_log" {
