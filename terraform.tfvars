@@ -11,7 +11,7 @@ log_analytics_workspace_id = "/subscriptions/ef0a94be-5750-4ef8-944b-1bbc0cdda80
 entity         = "sta"
 environment    = "dev"
 app_acronym    = "poc"
-sequence_number = "001"
+sequence_number = "002"
 account_kind             = "StorageV2"
 // TAGGING
 app_name ="sta"
