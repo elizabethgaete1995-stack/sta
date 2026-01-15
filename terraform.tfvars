@@ -12,7 +12,7 @@ entity         = "sta"
 environment    = "dev"
 app_acronym    = "poc"
 sequence_number = "001"
-
+account_kind             = "StorageV2"
 // TAGGING
 app_name ="sta"
 cost_center ="CC-Test" 
